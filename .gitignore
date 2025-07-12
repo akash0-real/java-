@@ -1,1 +1,36 @@
+# Java class files
 *.class
+
+# Log files
+*.log
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Eclipse/IntelliJ/NetBeans project files
+*.iml
+.idea/
+*.ipr
+*.iws
+*.bak
+*.swp
+*~
+
+# VS Code settings
+.vscode/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Build directories
+/bin/
+/out/
+/build/
+
+# Temporary files
+*.tmp
+*.temp
+
