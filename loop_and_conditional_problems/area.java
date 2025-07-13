@@ -5,7 +5,7 @@ public class area{
 		double breath;
 		int choice;
 		double result;
-		Boolean isArea = true;
+		boolean isArea = true;
 		Scanner scanner = new Scanner(System.in);
 		while(isArea){
                 	System.out.print("Enter the length of the rectangle: ");
