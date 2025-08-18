@@ -7,7 +7,7 @@ public class reverse_number {
     int sum;
     System.out.print("Enter a number: ");
     number = scanner.nextInt();
-    for(int i=0; i<=number;i++){
+    while(number!=0){
         sum = number%10;
         result = result*10+sum;
         number = number/10;
