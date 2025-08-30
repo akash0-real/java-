@@ -3,4 +3,4 @@ I'm using this space to improve my understanding of core Java concepts such as l
 
 Thanks for checking out my repo!
 
-feel free to suggest any imporvements.
+Feel free to suggest any imporvements.
