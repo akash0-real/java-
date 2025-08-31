@@ -19,7 +19,7 @@ class Car{
     }
 
     void result(){
-        System.out.println("The name name is " + name + ". Seats: " + seats + " and color: " + color);
+        System.out.println("The Car name is " + name + ". Seats: " + seats + " and color: " + color);
     }
     
     
