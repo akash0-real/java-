@@ -8,11 +8,16 @@ public class sub{
             String domain;
             System.out.print("Enter your email: ");
             email = scanner.nextLine();
-            username = email.substring(0, email.indexOf("@"));
-            domain = email.substring(email.indexOf("@") + 1);
+            if(email.contains("@")){
+                username = email.substring(0, email.indexOf("@"));
+                domain = email.substring(email.indexOf("@") + 1);
 
-            System.out.println("Your username is :" + username);
-            System.out.println("your domain is :" + domain);
+                System.out.println("Your username is :" + username);
+                System.out.println("your domain is :" + domain);
+            }
+            else{
+                System.out.println("Enter a valid email!");
+            }
             scanner.close();
 
 
