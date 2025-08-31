@@ -21,7 +21,9 @@ public class week{
 
             case "saturday" -> System.out.println("its weekend today!");
 
-            case "sunday"  -> System.out.println("tommorow is monday, so enjoy!");   
+            case "sunday"  -> System.out.println("tommorow is monday, so enjoy!");  
+
+            default -> System.out.println(weekday + " is not a day!");
         }
             
 
