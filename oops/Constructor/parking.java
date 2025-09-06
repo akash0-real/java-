@@ -1,4 +1,4 @@
-package oops;
+package oops.Constructor;
 import java.util.Scanner;
 
 public class parking{
