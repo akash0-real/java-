@@ -7,7 +7,7 @@ public class Fabi {
         System.out.print("enter a number: ");
         int number = scanner.nextInt();
         fabinacci(number);
-
+        scanner.close();
 
     }
     static void  fabinacci(int a){
