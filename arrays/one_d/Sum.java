@@ -4,7 +4,7 @@ public class Sum{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Odd one = new Odd(scanner);
-        
+        one.show();
         scanner.close();
     }
 }
@@ -50,6 +50,8 @@ class Odd extends Even{
     int now = 0;
     Odd(Scanner scanner){
         super(scanner);
+    }
+    void show(){
         for(int i=0;i<choice;i++){
             if(arr1[i]%2 != 0){
                 now +=1;

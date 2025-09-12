@@ -34,7 +34,9 @@ class Search extends Input{
         super(scanner);
         System.out.print("enter the number you want to enter: ");
         this.number = scanner.nextInt();
-        boolean isRun = false;
+    }
+    void show(){
+         boolean isRun = false;
         for(int i=0;i<arr1.length;i++){
             if(arr1[i] == number){
                 System.out.println("the index of the element is: " + i);
@@ -45,6 +47,5 @@ class Search extends Input{
         if(!isRun){
             System.out.println("element not found!");
         }
-        
     }
 }

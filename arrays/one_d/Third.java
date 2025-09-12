@@ -4,6 +4,7 @@ public class Third{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Sum one = new Sum(scanner);
+        one.show();
         scanner.close();
     }
 }
@@ -31,10 +32,11 @@ class Sum extends Input{
     int all = 0;
     Sum(Scanner scanner){
         super(scanner);
-        for(int i=0;i<arr1.length;i++){
+    }
+    void show(){
+            for(int i=0;i<arr1.length;i++){
             all += arr1[i];
         }
         System.out.println("the sum is: " + all);
-
-    }
+        }
 }
