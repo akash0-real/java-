@@ -4,6 +4,7 @@ public class Linear{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Search one = new Search(scanner);
+        one.show();
         scanner.close();
     }
 }
