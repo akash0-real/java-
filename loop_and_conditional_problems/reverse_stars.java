@@ -1,3 +1,4 @@
+package loop_and_conditional_problems;
 import java.util.Scanner;
 public class reverse_stars{
 	public static void main(String[] args){

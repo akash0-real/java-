@@ -1,3 +1,4 @@
+package loop_and_conditional_problems;
 import java.lang.Math;
 import java.util.Scanner;
 public class prime{
