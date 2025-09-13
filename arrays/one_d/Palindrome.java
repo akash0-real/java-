@@ -41,7 +41,7 @@ class Input extends Arr {
 
 class Check extends Input {
 
-    boolean run = false;
+    boolean run = true;
 
     Check(Scanner scanner) {
         super(scanner);
@@ -49,17 +49,18 @@ class Check extends Input {
 
     void Pal() {
         for (int i = 0; i < choice; i++) {
-            for (int j = arr1.length - 1; j >= 0; j++) {
-                if (arr1[i] == arr1[j]) {
-                    run = true;
+            for (int j = choice - 1 - i; j >= choice-1-i; j++) {
+                if (arr1[i] != arr1[j]) {
+                    run = false;
+                    break;
                 }
 
             }
         }
         if (!run) {
-            System.out.println("the array is palindrome!");
+            System.out.println("the array is not palindrome!");
         } else {
-            System.out.println("it is not");
+            System.out.println("it is palindrome!");
         }
     }
 }
