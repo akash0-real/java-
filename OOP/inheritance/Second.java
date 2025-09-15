@@ -1,4 +1,4 @@
-package oops.inheritance;
+package OOP.inheritance;
 import java.util.Scanner;
 public class Second {
     public static void main(String[] args) {

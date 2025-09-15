@@ -1,4 +1,4 @@
-package oops.Constructor;
+package OOP.constructor;
 public class first{
     public static void main(String[] args){
         Car one = new Car("Audi",4,"red");
