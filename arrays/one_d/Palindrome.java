@@ -5,11 +5,12 @@ import java.util.Scanner;
 public class Palindrome {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        try(Scanner scanner = new Scanner(System.in)){
         Check one = new Check(scanner);
         one.va(scanner);
         one.Pal();
-        scanner.close();
+    }
+        
     }
 }
 
