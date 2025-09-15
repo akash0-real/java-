@@ -4,24 +4,23 @@ import java.util.Scanner;
 
 public class Search {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Arr first = new Arr(scanner);
-        first.input(scanner);
-        first.positive();
-        first.negative();
-        first.zero();
-        scanner.close();
-        
+        try(Scanner scanner = new Scanner(System.in)){
+            Ar first = new Ar(scanner);
+            first.input(scanner);
+            first.positive();
+            first.negative();
+            first.zero();
+        }
     }
 }
 
-class Arr{
+class Ar{
     int[] arr;
     int choice;
 
-    Arr(Scanner scanner) {
+    Ar(Scanner scanner) {
         System.out.print("enter the no. of elements in array: ");
-        int choice = scanner.nextInt();
+        choice = scanner.nextInt();
         arr = new int[choice];
     }
     void input(Scanner scanner){
