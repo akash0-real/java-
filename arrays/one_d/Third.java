@@ -2,11 +2,11 @@ package arrays.one_d;
 import java.util.Scanner;
 public class Third{
     public static void main(String[] args) {
-        try(Scanner scanner = new Scanner(System.in)){
+        try(Scanner scanner = new Scanner(System.in)) {
         Sum one = new Sum(scanner);
         one.show();
-        scanner.close();
         }
+    
     }
 }
 
