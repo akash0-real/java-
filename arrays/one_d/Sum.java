@@ -2,10 +2,10 @@ package arrays.one_d;
 import java.util.Scanner;
 public class Sum{
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+       try( Scanner scanner = new Scanner(System.in)){
         Odd one = new Odd(scanner);
         one.show();
-        scanner.close();
+       }
     }
 }
 
