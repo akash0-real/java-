@@ -29,7 +29,7 @@ public class School{
                 System.out.print("Enter marks for subject " + (j + 1) + ": ");
                 marks[j] = scanner.nextInt();
             }
-            scanner.nextLine(); // consume newline
+            scanner.nextLine(); 
 
             one[i] = new Student(name, roll_no, marks);
         }
