@@ -1,5 +1,5 @@
 package OOP.constructor;
-public class first{
+public class First{
     public static void main(String[] args){
         Car one = new Car("Audi",4,"red");
         one.result();
