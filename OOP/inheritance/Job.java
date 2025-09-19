@@ -40,7 +40,7 @@ class Manager extends Employee{
     }
     @Override
     void salary(){
-        System.out.println("the salary of mangers are: " + salary+100);
+        System.out.println("the salary of mangers are: " + (salary+100));
     }
 }
 class Dev extends Employee{
@@ -50,7 +50,7 @@ class Dev extends Employee{
 
     @Override
     void salary() {
-        System.out.println("the pay of developers are: " + salary+10000);
+        System.out.println("the pay of developers are: " + (salary+1000));
     }
 } 
 
