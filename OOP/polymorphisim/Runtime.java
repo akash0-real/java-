@@ -10,14 +10,20 @@ public class Runtime {
             choice = scanner.nextInt();
         }
         Animal animal;
-        if(choice ==1){
-            animal = new Dog();
-            animal.speak();
-        }
-        else if (choice ==2){
-            animal = new Cat();
-            animal.speak();
-        }
+        switch(choice){
+            case 1 -> {
+                animal = new Dog();
+                animal.speak();
+            }
+            case 2 -> {
+                animal = new Cat();
+                animal.speak();
+            }
+            
+            default -> System.out.println("enter a vaild value!!");
+
+        } 
+        
 
         
     }
