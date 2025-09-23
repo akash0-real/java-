@@ -1,4 +1,4 @@
-package connect;
+package OOP.packages;
 
 public class greeting_2 {
     public static void main(String[] args) {
