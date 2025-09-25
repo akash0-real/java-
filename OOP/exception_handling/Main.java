@@ -19,6 +19,9 @@ public class Main {
     catch(Exception e){
         System.out.println("Something went wrong!!");
     }
+    finally{
+        System.out.println("this is the end of the program!!");
+    }
     }
    } 
 
