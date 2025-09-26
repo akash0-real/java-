@@ -4,7 +4,7 @@ public class Single {
    public static void main(String[] args) {
     One one = new One();
     Thread thread = new Thread(one);
-    thread.run();
+    thread.start();
     
 
    }
