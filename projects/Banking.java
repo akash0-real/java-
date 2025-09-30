@@ -109,8 +109,8 @@ class Current extends Money{
                     System.out.println("Insufficient funds!!");
                 }
                 else{
-                    withdraw = balance-withdraw;
-                    System.out.println("your current balance is: " + withdraw);
+                    balance = balance-withdraw;
+                    System.out.println("your current balance is: " + balance);
                 }
             }
             default -> System.out.println("Enter a valid value!!");
@@ -147,8 +147,8 @@ class Saving extends Money{
                     System.out.println("Insufficient funds!!");
                 }
                 else{
-                    withdraw = balance-withdraw;
-                    System.out.println("your current balance is: " + withdraw);
+                    balance = balance-withdraw;
+                    System.out.println("your current balance is: " + balance);
                 }
             }
                 default -> System.out.println("Enter a valid value!!");
@@ -167,14 +167,14 @@ class Fixed extends Money{
     void trans(Scanner scanner, double balance){
         System.out.println("Do u want to depoist or withdraw(1 for depoist/2 for withdraw): ");
             int choice = scanner.nextInt();
-            switch(choice){
+            switch(choice){//again same 
                 case 1 -> {
                     System.out.println("enter the amount do you want to deposit: ");
                     double depoist = scanner.nextDouble();
                     balance = balance + depoist;
                     System.out.println("your balance now is " + balance);
                 }
-                case 2 -> System.out.println("This is a fixed account,Cant withdraw!!");
+                case 2 -> System.out.println("This is a fixed account,Cant withdraw!!");// now it is fixed account so user cant withdraw from it!!
 
                 default -> System.out.println("wrong input!!!");
 
