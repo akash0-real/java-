@@ -1,10 +1,11 @@
 package collections.aggregation;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
    public static void main(String[] args) {
     try(Scanner scanner = new Scanner(System.in)){
-        System.out.print("Please enter how many books you want to insert: ");
+        try{System.out.print("Please enter how many books you want to insert: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         Books[] books = new Books[choice];
@@ -26,6 +27,11 @@ public class Main {
         scanner.nextLine();
         Library lib = new Library(name, year, books);
         lib.show();
+    }catch(InputMismatchException e){
+        System.out.println("wrong input!!");
+    }catch(ArrayIndexOutOfBoundsException e){
+        System.out.println("invalid size of an array!!!");
+    }
 
     }
     
