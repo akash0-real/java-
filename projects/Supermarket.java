@@ -18,7 +18,7 @@ public class Supermarket {
                     System.out.println("1. for add!");
                     System.out.println("2. for remove!");
                     System.out.println("3. for display!!");
-                    System.out.println("4. for Uodate quantity!!");
+                    System.out.println("4. for Update quantity!!");
                     System.out.println("5. for Search by name!!");
                     System.out.println("6. for View by category!!");
                     System.out.println("7. fro Low stock alert!!");
@@ -39,6 +39,18 @@ public class Supermarket {
                             arr.display();
                         }
                         case 4 -> {
+                            arr.updateQuantity(scanner);
+                        }
+                        case 5 -> {
+                            arr.search(scanner);
+                        }
+                        case 6 -> {
+                            arr.view(scanner);
+                        }
+                        case 8 -> {
+                            arr.sort(scanner);
+                        }
+                        case 10 ->{
                             System.out.println("byeee... ");
                             System.out.println("Exiting in 4....");
                             try {
@@ -46,10 +58,7 @@ public class Supermarket {
                             } catch (InterruptedException e) {
                                 System.out.println("Error!!");
                             }
-                            isRun = false; // to break out of the loop!!
-                        }
-                        case 8 -> {
-                            arr.sort(scanner);
+                            isRun = false;
                         }
                         default -> System.out.println("Enter a valid input!!");
                     }
@@ -72,7 +81,7 @@ abstract class Product{
     private final int id;
     private final String category;
     private final double price;
-    private final int quantity;
+    private int quantity;
     Product(String name,String category,double price,int quantity){
         this.name = name;
         this.id = idCounter++;
@@ -92,8 +101,17 @@ abstract class Product{
     public double getPrice(){
         return price;
     }
+
+    //getters for use
     public int getQuantity(){
         return quantity;
+    }
+
+    //setters to use!
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+
     }
 
     abstract void show();
@@ -120,9 +138,9 @@ interface Arr{
     void input(Scanner scanner);
     void remove(Scanner scanner);
     void display();
-    void updateQuantity();
-    void search();
-    void view();
+    void updateQuantity(Scanner scanner);
+    void search(Scanner scanner);
+    void view(Scanner scanner);
     void lowStock();
     void sort(Scanner scanner);
     void totalValue();
@@ -187,18 +205,98 @@ class two implements Arr{
 
     }
     @Override
-    public void updateQuantity(){
+    public void updateQuantity(Scanner scanner){
+        if(one.isEmpty()){
+            System.out.println("There is no product!! ");
+            return;
+        }
+
+        System.out.println("Enter the ProductId: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        ProductItem product = null;
+        for(ProductItem p: one){
+            if(p.getId() == id){
+                product = p;
+                break;
+            }
+            else{
+                System.out.println("No product with this id!!");
+            }
+        }
+
+        if(product == null){
+            System.out.println("There is no product!!");
+        }
+        System.out.println("Current quantity: " + product.getQuantity());
+        System.out.println("1. for add/ 2. for remove");
+        System.out.println("Enter the amount: ");
+        int amount = scanner.nextInt();
+        scanner.nextLine();
+
+        if(amount == 1){
+            product.setQuantity(product.getQuantity() + amount);
+            System.out.println("quantity updated!!");
+        }
+        else if (amount ==2){
+            if(amount <= product.getQuantity()){
+                product.setQuantity(product.getQuantity() - amount);
+                System.out.println("quantity updated!!");
+            }
+            else{
+                System.out.println("Insufficient products!!");
+            }   
+        }
+
+
 
     }
 
     @Override
-    public void search(){
+    public void search(Scanner scanner){
+        if(one.isEmpty()){
+            System.out.println("There is no product!!");
+            return;
+        }
+        System.out.println("Enter the name of the of the product!!");
+        String product_name = scanner.nextLine();
+        boolean found = true;
+
+        for(ProductItem two: one){
+            if(two.getName().equalsIgnoreCase(product_name)){
+                two.show();
+                found = false;
+                break;
+
+            }
+        }
+        if(!found){
+            System.out.println("Couldnt find this product!!");
+        }
+
         
 
     }
 
     @Override
-    public void view(){
+    public void view(Scanner scanner){
+        if(one.isEmpty()){
+            System.out.println("Cart is Empty!!");
+            return;
+        }
+        
+        System.out.println("Enter a category to view products: ");
+        String product_category = scanner.nextLine();
+        boolean view = true;
+        for(ProductItem two: one){
+            if(two.getCategory().equalsIgnoreCase(product_category)){
+                System.out.println(two);
+                view = false;
+            }
+            if(!view){
+                System.out.println("Couldnt find the product!!");
+            }
+        }
 
 
     }
@@ -221,8 +319,13 @@ class two implements Arr{
         System.out.print("Enter: ");
         int check = scanner.nextInt();
         scanner .nextLine();
-        Comparator<ProductItem> comparator;
-        switch (check){
+        Comparator<ProductItem> comparator = null;
+        if(one.isEmpty()){
+            System.out.println("Array is Empty!!");
+            System.out.println();
+        }
+        else{
+            switch (check){
             case 1 -> comparator = Comparator.comparing(ProductItem::getName);
             case 2 -> comparator = Comparator.comparing(ProductItem::getId);
             case 3 -> comparator = Comparator.comparing(ProductItem::getCategory);
@@ -236,12 +339,14 @@ class two implements Arr{
                 System.out.println("Invalid input!");
                 return;
             }
-    }
-    
+            
+        }
         Collections.sort(one, comparator);
             for(ProductItem item: one){
                 item.show();
             }
+    }
+    
 
 
     }
