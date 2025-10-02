@@ -61,16 +61,21 @@ abstract class Product{
     private static int idCounter = 100;
     private final String name;
     private final int id;
+    private final String category;
     private final double price;
     private final int quantity;
-    Product(String name,double price,int quantity){
+    Product(String name,String category,double price,int quantity){
         this.name = name;
         this.id = idCounter++;
+        this.category = category;
         this.price = price;
         this.quantity = quantity;
     }
     public String getName(){
         return name;
+    }
+    public String getCategory(){
+        return category;
     }
     public int getId(){
         return id;
@@ -89,13 +94,13 @@ abstract class Product{
 // inheirting abstract class to display and assign the values!
 
 class ProductItem extends Product{
-    ProductItem(String name,double price,int quantity){
-        super(name, price, quantity);
+    ProductItem(String name,String category,double price,int quantity){
+        super(name, category, price, quantity);
     }
 
     @Override
     public void show(){
-        System.out.println("name: " + getName() + " id: " + getId() + " price: " + getPrice() + " quantity: " + getQuantity());
+        System.out.println("name: " + getName() + " id: " + getId() + ". category: " + getCategory() +" price: " + getPrice() + " quantity: " + getQuantity());
     }
     
 }
@@ -120,6 +125,8 @@ class two implements Arr{
         for(int i=0;i<choice;i++){
             System.out.print("Enter the name of the Product: ");
             String name = scanner.nextLine();
+            System.out.println("Enter the category of the product: ");
+            String category = scanner.nextLine();
             System.out.print("Enter the Price of the Product ");
             double price = scanner.nextDouble();
             scanner.nextLine();//to read the leftover line.
@@ -127,7 +134,7 @@ class two implements Arr{
             int quant = scanner.nextInt();
             scanner.nextLine();
 
-            one.add(new ProductItem(name, price, quant));
+            one.add(new ProductItem(name, category,price, quant));
         }
     }
     @Override
