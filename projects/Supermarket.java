@@ -23,7 +23,7 @@ public class Supermarket {
                     System.out.println("6. for View by category!!");
                     System.out.println("7. for Low stock alert!!");
                     System.out.println("8. for Sort the products!!");
-                    System.out.println("9. for Total Products value!!");
+                    System.out.println("9. for Total Money!!");
                     System.out.println("10. for exit!!");
                     System.out.print("Enter: ");
                     int run = scanner.nextInt();
@@ -47,8 +47,14 @@ public class Supermarket {
                         case 6 -> {
                             arr.view(scanner);
                         }
+                        case 7 -> {
+                            arr.lowStock();
+                        }
                         case 8 -> {
                             arr.sort(scanner);
+                        }
+                        case 9 -> {
+                            arr.totalValue();
                         }
                         case 10 ->{
                             System.out.println("byeee... ");
@@ -230,15 +236,16 @@ class two implements Arr{
         }
         System.out.println("Current quantity: " + product.getQuantity());
         System.out.println("1. for add/ 2. for remove");
+        int choice = scanner.nextInt();
         System.out.println("Enter the amount: ");
         int amount = scanner.nextInt();
         scanner.nextLine();
 
-        if(amount == 1){
+        if(choice == 1){
             product.setQuantity(product.getQuantity() + amount);
             System.out.println("quantity updated!!");
         }
-        else if (amount ==2){
+        else if (choice ==2){
             if(amount <= product.getQuantity()){
                 product.setQuantity(product.getQuantity() - amount);
                 System.out.println("quantity updated!!");
@@ -260,12 +267,12 @@ class two implements Arr{
         }
         System.out.println("Enter the name of the of the product!!");
         String product_name = scanner.nextLine();
-        boolean found = true;
+        boolean found = false;
 
         for(ProductItem two: one){
             if(two.getName().equalsIgnoreCase(product_name)){
                 two.show();
-                found = false;
+                found = true;
                 break;
 
             }
@@ -366,7 +373,15 @@ class two implements Arr{
 
     @Override
     public void totalValue(){
-
+        if(one.isEmpty()){
+            System.out.println("Cart is empty!!!");
+            return;
+        }
+        double total = 0;
+        for(ProductItem two: one){
+            total += two.getPrice() * two.getQuantity();
+        }
+        System.out.println("The total amount is: " + total);
 
     }
 
