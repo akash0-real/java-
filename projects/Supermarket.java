@@ -18,7 +18,13 @@ public class Supermarket {
                     System.out.println("1. for add!");
                     System.out.println("2. for remove!");
                     System.out.println("3. for display!!");
-                    System.out.println("4. for exit!!");
+                    System.out.println("4. for Uodate quantity!!");
+                    System.out.println("5. for Search by name!!");
+                    System.out.println("6. for View by category!!");
+                    System.out.println("7. fro Low stock alert!!");
+                    System.out.println("8. for Sort the products!!");
+                    System.out.println("9. for Total Products value!!");
+                    System.out.println("10. for exit!!");
                     System.out.print("Enter: ");
                     int run = scanner.nextInt();
                     scanner.nextLine();
@@ -41,6 +47,9 @@ public class Supermarket {
                                 System.out.println("Error!!");
                             }
                             isRun = false; // to break out of the loop!!
+                        }
+                        case 8 -> {
+                            arr.sort(scanner);
                         }
                         default -> System.out.println("Enter a valid input!!");
                     }
@@ -111,6 +120,13 @@ interface Arr{
     void input(Scanner scanner);
     void remove(Scanner scanner);
     void display();
+    void updateQuantity();
+    void search();
+    void view();
+    void lowStock();
+    void sort(Scanner scanner);
+    void totalValue();
+
 
 }
 
@@ -164,11 +180,77 @@ class two implements Arr{
             System.out.println("The array is empty!!");
         }
         else{
-            Collections.sort(one, Comparator.comparing(ProductItem::getId)); // Sorting an array using sort!
             for(ProductItem two: one){
                 two.show();
             }
         }
 
     }
+    @Override
+    public void updateQuantity(){
+
+    }
+
+    @Override
+    public void search(){
+        
+
+    }
+
+    @Override
+    public void view(){
+
+
+    }
+
+    @Override
+    public void lowStock(){
+
+
+    }
+
+    @Override
+    public void sort(Scanner scanner){
+        System.out.println("How do you want to sort it?");
+        System.out.println("1. to sort via name!!");
+        System.out.println("2. to sort via Id!!");
+        System.out.println("3. to sort via cateogry!!");
+        System.out.println("4. to sort via price!!!");
+        System.out.println("5. to sort via quantity!!");
+        System.out.println("6. to go back!!");
+        System.out.print("Enter: ");
+        int check = scanner.nextInt();
+        scanner .nextLine();
+        Comparator<ProductItem> comparator;
+        switch (check){
+            case 1 -> comparator = Comparator.comparing(ProductItem::getName);
+            case 2 -> comparator = Comparator.comparing(ProductItem::getId);
+            case 3 -> comparator = Comparator.comparing(ProductItem::getCategory);
+            case 4 -> comparator = Comparator.comparing(ProductItem::getPrice);
+            case 5 -> comparator = Comparator.comparing(ProductItem::getQuantity);
+            case 6 -> {
+                System.out.println("Returning to menu...");
+                return;
+            }
+            default -> {
+                System.out.println("Invalid input!");
+                return;
+            }
+    }
+    
+        Collections.sort(one, comparator);
+            for(ProductItem item: one){
+                item.show();
+            }
+
+
+    }
+
+    @Override
+    public void totalValue(){
+
+
+    }
+
+
 }
