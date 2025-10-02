@@ -21,7 +21,7 @@ public class Supermarket {
                     System.out.println("4. for Update quantity!!");
                     System.out.println("5. for Search by name!!");
                     System.out.println("6. for View by category!!");
-                    System.out.println("7. fro Low stock alert!!");
+                    System.out.println("7. for Low stock alert!!");
                     System.out.println("8. for Sort the products!!");
                     System.out.println("9. for Total Products value!!");
                     System.out.println("10. for exit!!");
@@ -287,15 +287,15 @@ class two implements Arr{
         
         System.out.println("Enter a category to view products: ");
         String product_category = scanner.nextLine();
-        boolean view = true;
+        boolean view = false;
         for(ProductItem two: one){
             if(two.getCategory().equalsIgnoreCase(product_category)){
-                System.out.println(two);
-                view = false;
+                two.show();
+                view = true;
             }
-            if(!view){
-                System.out.println("Couldnt find the product!!");
-            }
+        }
+        if(!view){
+            System.out.println("Couldnt find!" + product_category);
         }
 
 
@@ -303,7 +303,20 @@ class two implements Arr{
 
     @Override
     public void lowStock(){
-
+        if(one.isEmpty()){
+            System.out.println("Cart is empty");
+            return;
+        }
+        boolean low = false;
+        for(ProductItem two: one){
+            if(two.getQuantity()<5){
+                System.out.println("Low stock on " + two.getName());
+                low = true;
+            }
+        }
+        if(!low){
+            System.out.println("All Quantity is fine!!!");
+        }
 
     }
 
