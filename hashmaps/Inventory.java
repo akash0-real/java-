@@ -66,6 +66,9 @@ class Product{
         this.quantity = quantity;
     }
 
+    String getName(){
+        return name;
+    }
     String getCategory(){
         return category;
     }
@@ -182,13 +185,27 @@ class Cart{
                 else{
                     System.out.println("couldnt remove!!!");
                 }   
+            }
+            default -> {
+                System.out.println("Enter a valid input!!");
             }   
         }
 
+    }
 
-
-
-
+    void search(Scanner scanner){
+        System.out.print("Enter a product name to search: ");
+        String name = scanner.nextLine();
+        boolean isRun = false;
+        for(Product p: map.values()){
+            if(p.getName().equalsIgnoreCase(name)){
+               
+                isRun = false;
+            }
+        }
+        if(!isRun){
+            System.out.println("Invalid name!!");
+        }
     }
 
 
