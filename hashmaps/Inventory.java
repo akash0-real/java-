@@ -7,8 +7,49 @@ public class Inventory {
     public static void main(String[] args) {
        try(Scanner scanner = new Scanner(System.in)){
         Cart cart = new Cart();
-        cart.add(scanner);
-        cart.display();
+        boolean run = true;
+        while(run){
+            System.out.println("Welcome to Supermarket Inventory!!! ");
+            System.out.println();
+            System.out.println("Menu.....");
+            System.out.println("1. for add!");
+            System.out.println("2. for remove!");
+            System.out.println("3. for display!!");
+            System.out.println("4. for Update quantity!!");
+            System.out.println("5. for Search by name!!");
+            System.out.println("6. for View by category!!");
+            System.out.println("7. for Low stock alert!!");
+            System.out.println("8. for Sort the products!!");
+            System.out.println("9. for Total Money!!");
+            System.out.println("10. for exit!!");
+            System.out.print("Enter: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch(choice){
+                case 1 ->{
+                    cart.add(scanner);
+                }
+
+                case 2 -> {
+                    cart.remove(scanner);
+                }
+                case 3 -> {
+                    cart.display();
+                }
+                case 4 -> {
+                    cart.update(scanner);
+                }
+                case 10 -> {
+                    System.out.println("Exiting...");
+                    System.out.println("bye...");
+                    run = false;
+                }
+                default -> {
+                    System.out.println("Enter the valid input!!");
+                }
+            }
+        }
         
     }}
 }
@@ -25,22 +66,21 @@ class Product{
         this.quantity = quantity;
     }
 
-    void getName(){
-        System.out.println(name);
+    String getCategory(){
+        return category;
+    }
+    double getPrice(){
+        return price;
+    }
+    int getQuantity(){
+        return quantity;
     }
 
-    void getCategory(){
-        System.out.println(category);
+    Double setPrice(Double price){
+        return this.price = price;
     }
-    void getPrice(){
-        System.out.println(price);
-    }
-    void getQuantity(){
-        System.out.println(quantity);
-    }
-
-    void setPrice(){
-        this.price = price;
+    int setQuantity(int quantity){
+        return this.quantity = quantity;
     }
 
 }
@@ -78,20 +118,77 @@ class Cart{
     //to remove the value!!
 
     void remove(Scanner scanner){
-        System.out.println("Enter the name of the productid to remove: ");
-        int pid = scanner.nextInt();
-        if(map.containsKey(pid)){
-            map.remove(pid);
-            System.out.println("The product is removed!");
+        if(map.isEmpty()){
+            System.out.println("There is no products!!");
         }
         else{
-            System.out.println("Couldnt remove the product!!");
+            System.out.println("Enter the name of the productid to remove: ");
+            int pid = scanner.nextInt();
+            if(map.containsKey(pid)){
+                map.remove(pid);
+                System.out.println("The product is removed!");
+            }
+            else{
+                System.out.println("Couldnt remove the product!!");
+            }
         }
     }
+
     // to display the values!!
 
     void display(){
+        if(map.isEmpty()){
+            System.out.println("There is no products to display!!");
+            return;
+        }
+
+        for(int keys: map.keySet()){
+
+        }
         
+    }
+
+    // to change the quantity according to the user!!
+    void update(Scanner scanner){
+        if(map.isEmpty()){
+            System.out.println("there is no products!!");
+            return;
+        }
+
+        System.out.println("Enter the product_Id: ");
+        int p_id = scanner.nextInt();
+        scanner.nextLine();
+
+        Product one = map.get(p_id);
+
+        System.out.print("Do you want to add or remove the the quantity?(1 for add/ 2 for remove): ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("enter the amount: ");
+        int amount = scanner.nextInt();
+        scanner.nextLine();
+
+        switch(choice){
+            case 1 -> {
+                one.setQuantity(one.getQuantity()+amount);
+                System.out.println("added succesfully!!");
+            }
+            case 2 -> {
+                if(amount<=one.getQuantity()){
+                    one.setQuantity(one.getQuantity() - amount);
+                    System.out.println("removed succesfully!!");
+                }
+                else{
+                    System.out.println("couldnt remove!!!");
+                }   
+            }   
+        }
+
+
+
+
+
     }
 
 
