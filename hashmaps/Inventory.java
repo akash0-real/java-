@@ -1,85 +1,101 @@
 package hashmaps;
+
+// all the imports i used in this program..
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+//Main class!!
 public class Inventory {
     public static void main(String[] args) {
-       try(Scanner scanner = new Scanner(System.in)){
-        Cart cart = new Cart();
-        boolean run = true;
-        while(run){
-            System.out.println("Welcome to Supermarket Inventory!!! ");
-            System.out.println();
-            System.out.println("Menu.....");
-            System.out.println("1. for add!");
-            System.out.println("2. for remove!");
-            System.out.println("3. for display!!");
-            System.out.println("4. for Update quantity!!");
-            System.out.println("5. for Search by name!!");
-            System.out.println("6. for View by category!!");
-            System.out.println("7. for Low stock alert!!");
-            System.out.println("8. for Sort the products!!");
-            System.out.println("9. for Total Money!!");
-            System.out.println("10. for exit!!");
-            System.out.print("Enter: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+       try(Scanner scanner = new Scanner(System.in)){//Scanner in try to save a little memory!!
+        try{        //using try to catch wrong inputs and more!!
+            Cart cart = new Cart();
+            boolean run = true;
+            while(run){
+                System.out.println("Welcome to Supermarket Inventory!!! ");
+                System.out.println();
+                System.out.println("Menu.....");
+                System.out.println("1. for add!");
+                System.out.println("2. for remove!");
+                System.out.println("3. for display!!");
+                System.out.println("4. for Update quantity!!");
+                System.out.println("5. for Search by name!!");
+                System.out.println("6. for View by category!!");
+                System.out.println("7. for Low stock alert!!");
+                System.out.println("8. for Sort the products!!");
+                System.out.println("9. for Total Money!!");
+                System.out.println("10. for exit!!");
+                System.out.print("Enter: ");
+                int choice = scanner.nextInt();
+                scanner.nextLine();
 
-            switch(choice){
-                case 1 ->{
-                    cart.add(scanner);
-                }
+                switch(choice){
+                    case 1 ->{
+                        cart.add(scanner);
+                    }
 
-                case 2 -> {
-                    cart.remove(scanner);
-                }
-                case 3 -> {
-                    cart.display();
-                }
-                case 4 -> {
-                    cart.update(scanner);
-                }
-                case 5 -> {
-                    cart.search(scanner);
-                }
-                case 6 -> {
-                    cart.view(scanner);
-                }
-                case 7 -> {
-                    cart.low(scanner);
-                }
-                case 8 -> {
-                    cart.sort(scanner);
-                }
-                case 10 -> {
-                    System.out.println("Exiting...");
-                    System.out.println("bye...");
-                    run = false;
-                }
-                default -> {
-                    System.out.println("Enter the valid input!!");
-                }
+                    case 2 -> {
+                        cart.remove(scanner);
+                    }
+                    case 3 -> {
+                        cart.display();
+                    }
+                    case 4 -> {
+                        cart.update(scanner);
+                    }
+                    case 5 -> {
+                        cart.search(scanner);
+                    }
+                    case 6 -> {
+                        cart.view(scanner);
+                    }
+                    case 7 -> {
+                        cart.low(scanner);
+                    }
+                    case 8 -> {
+                        cart.sort(scanner);
+                    }
+                    case 9 -> {
+                        cart.total();
+                    }
+                    case 10 -> {
+                        System.out.println("Exiting...");
+                        System.out.println("bye...");
+                        run = false;
+                    }
+                    default -> {
+                        System.out.println("Enter the valid input!!");
+                    }
             }
         }
+        }catch(InputMismatchException e){   // to catch wrong input format exception!!
+            System.out.println("wrong input please enter valid input!!");
+        }
+
         
-    }}
+    }
+}
 }
 
+//Product class so we can use it in hashmap!!
 class Product{
-    String name;
-    String category;
-    Double price;
-    int quantity;
-    Product(String name,String category,Double price,int quantity){
+    private final String name;
+private final String category; // making them private so no one can access them!!
+    private final Double price;
+    private int quantity;
+    Product(String name,String category,Double price,int quantity){ // constructor to define values!!
         this.name = name;
         this.category = category;
         this.price = price;
         this.quantity = quantity;
     }
 
+
+    //get methods to help us encapsulation!!
     String getName(){
         return name;
     }
@@ -93,6 +109,7 @@ class Product{
         return quantity;
     }
 
+    // setter to so we can overwrite quantity!!
     int setQuantity(int quantity){
         return this.quantity = quantity;
     }
@@ -100,7 +117,7 @@ class Product{
 }
 
 class Cart{
-    private final HashMap<Integer, Product> map = new HashMap<>();
+    private final HashMap<Integer, Product> map = new HashMap<>(); // hashmap inisilation of hashmap!!
     
 
     //to add the new values!!
@@ -124,7 +141,7 @@ class Cart{
             int quantity = scanner.nextInt();
             scanner.nextLine();
             
-            map.put(id,new Product(name, category, price, quantity));
+            map.put(id,new Product(name, category, price, quantity)); // making them store in hashmap!!
             
 
             
@@ -181,7 +198,7 @@ class Cart{
             return;
         }
 
-        Product one = map.get(p_id);
+        Product one = map.get(p_id); // to get the id of product!!
 
         System.out.print("Do you want to add or remove the the quantity?(1 for add/ 2 for remove): ");
         int choice = scanner.nextInt();
@@ -212,6 +229,8 @@ class Cart{
 
     }
 
+
+    //to search via name!!
     void search(Scanner scanner){
         if(map.isEmpty()){
             System.out.println("There is not products!! ");
@@ -231,6 +250,8 @@ class Cart{
         }
     }
 
+
+    // to view the products as category wise!!
     void view(Scanner scanner){
         if(map.isEmpty()){
             System.out.println("There is no products!!");
@@ -252,7 +273,9 @@ class Cart{
         }
 
     }
-    
+
+
+    // for low stock alert!!
     void low(Scanner scanner){
         if(map.isEmpty()){
             System.out.println("There is no products!!");
@@ -272,7 +295,13 @@ class Cart{
 
     }
 
+    //Sorting via options!!!
     void sort(Scanner scanner){
+        if(map.isEmpty()){
+            System.out.println("there are no products!!");
+            return;
+        }
+
         System.out.println("How do you want to sort it?");
         System.out.println("1. to sort via name!!");
         System.out.println("2. to sort via Id!!");
@@ -284,8 +313,8 @@ class Cart{
         int check = scanner.nextInt();
         scanner .nextLine();
 
-        ArrayList<Product> products = new ArrayList<>(map.values());
-        Comparator<Product> comparator = null;
+        ArrayList<Product> products = new ArrayList<>(map.values()); // converting it to arralist!!
+        Comparator<Product> comparator; // using comparator!!
 
         switch (check){
             case 1 -> comparator = Comparator.comparing(Product::getName);
@@ -301,11 +330,26 @@ class Cart{
                 return;
             }
         }
+        // to view and sort the products!!
         Collections.sort(products, comparator);
             for(Product item: products){
                 System.out.println("name: " + item.getName() + ", category:  " + item.getCategory() + ", price: " + item.getPrice() + ", quantity: " + item.getQuantity());
                 
             }
+
+    }
+
+    // for finding the total price!!
+    void total(){
+        if(map.isEmpty()){
+            System.out.println("There are no products!!");
+            return;
+        }
+        double total = 0;
+        for(Product p: map.values()){
+            total += p.getPrice() * p.getQuantity();
+        }
+        System.out.println("The total price is: $" + total);
 
     }
 
