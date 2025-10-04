@@ -1,5 +1,7 @@
 package hashmaps;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -48,6 +50,9 @@ public class Inventory {
                 }
                 case 7 -> {
                     cart.low(scanner);
+                }
+                case 8 -> {
+                    cart.sort(scanner);
                 }
                 case 10 -> {
                     System.out.println("Exiting...");
@@ -125,6 +130,7 @@ class Cart{
             
         }
     }
+
     //to remove the value!!
 
     void remove(Scanner scanner){
@@ -263,6 +269,43 @@ class Cart{
             System.out.println("The stock is fine!!");
         }
 
+
+    }
+
+    void sort(Scanner scanner){
+        System.out.println("How do you want to sort it?");
+        System.out.println("1. to sort via name!!");
+        System.out.println("2. to sort via Id!!");
+        System.out.println("3. to sort via cateogry!!");
+        System.out.println("4. to sort via price!!!");
+        System.out.println("5. to sort via quantity!!");
+        System.out.println("6. to go back!!");
+        System.out.print("Enter: ");
+        int check = scanner.nextInt();
+        scanner .nextLine();
+
+        ArrayList<Product> products = new ArrayList<>(map.values());
+        Comparator<Product> comparator = null;
+
+        switch (check){
+            case 1 -> comparator = Comparator.comparing(Product::getName);
+            case 2 -> comparator = Comparator.comparing(Product::getCategory);
+            case 3 -> comparator = Comparator.comparing(Product::getPrice);
+            case 4 -> comparator = Comparator.comparing(Product::getQuantity);
+            case 5 -> {
+                System.out.println("Returning to menu...");
+                return;
+            }
+            default -> {
+                System.out.println("Invalid input!");
+                return;
+            }
+        }
+        Collections.sort(products, comparator);
+            for(Product item: products){
+                System.out.println("name: " + item.getName() + ", category:  " + item.getCategory() + ", price: " + item.getPrice() + ", quantity: " + item.getQuantity());
+                
+            }
 
     }
 
