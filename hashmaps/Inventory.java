@@ -46,6 +46,9 @@ public class Inventory {
                 case 6 -> {
                     cart.view(scanner);
                 }
+                case 7 -> {
+                    cart.low(scanner);
+                }
                 case 10 -> {
                     System.out.println("Exiting...");
                     System.out.println("bye...");
@@ -242,7 +245,26 @@ class Cart{
             System.out.println("couldnt find the category!!!");
         }
 
-    }   
+    }
+    
+    void low(Scanner scanner){
+        if(map.isEmpty()){
+            System.out.println("There is no products!!");
+            return;
+        }
+        boolean low = false;
+        for(Product p : map.values()){
+            if(p.getQuantity()<10){
+                System.out.println("Low stock on: " + p.getName());
+                low = true;
+            }
+        }
+        if(!low){
+            System.out.println("The stock is fine!!");
+        }
+
+
+    }
 
     
 
