@@ -40,6 +40,12 @@ public class Inventory {
                 case 4 -> {
                     cart.update(scanner);
                 }
+                case 5 -> {
+                    cart.search(scanner);
+                }
+                case 6 -> {
+                    cart.view(scanner);
+                }
                 case 10 -> {
                     System.out.println("Exiting...");
                     System.out.println("bye...");
@@ -79,9 +85,6 @@ class Product{
         return quantity;
     }
 
-    Double setPrice(Double price){
-        return this.price = price;
-    }
     int setQuantity(int quantity){
         return this.quantity = quantity;
     }
@@ -90,6 +93,7 @@ class Product{
 
 class Cart{
     private final HashMap<Integer, Product> map = new HashMap<>();
+    
 
     //to add the new values!!
 
@@ -146,7 +150,8 @@ class Cart{
         }
 
         for(int keys: map.keySet()){
-
+            Product p = map.get(keys);
+            System.out.println("Id: " + keys + ", name: " + p.getName() + ", categoty: " + p.getCategory() + ", price: " + p.getPrice() + ", quantity: " + p.getQuantity());
         }
         
     }
@@ -161,6 +166,11 @@ class Cart{
         System.out.println("Enter the product_Id: ");
         int p_id = scanner.nextInt();
         scanner.nextLine();
+
+        if(!map.containsKey(p_id)){
+            System.out.println("wrong product id!!");
+            return;
+        }
 
         Product one = map.get(p_id);
 
@@ -194,13 +204,17 @@ class Cart{
     }
 
     void search(Scanner scanner){
+        if(map.isEmpty()){
+            System.out.println("There is not products!! ");
+            return;
+        }
         System.out.print("Enter a product name to search: ");
         String name = scanner.nextLine();
         boolean isRun = false;
         for(Product p: map.values()){
             if(p.getName().equalsIgnoreCase(name)){
-               
-                isRun = false;
+               System.out.println("Found: " + p.getName() + " , price: " + p.getPrice());
+                isRun = true;
             }
         }
         if(!isRun){
@@ -208,6 +222,27 @@ class Cart{
         }
     }
 
+    void view(Scanner scanner){
+        if(map.isEmpty()){
+            System.out.println("There is no products!!");
+            return;
+        }
+
+        System.out.println("Enter a category to search: ");
+        String cat = scanner.nextLine();
+        boolean check = false;
+        for(Product one: map.values()){
+            if(one.getCategory().equalsIgnoreCase(cat)){
+                System.out.print("name: " + one.getName() + ", Price: " + one.getPrice());
+                check = true;
+            }
+        }
+
+        if(!check){
+            System.out.println("couldnt find the category!!!");
+        }
+
+    }   
 
     
 
