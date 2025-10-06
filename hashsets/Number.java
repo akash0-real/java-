@@ -11,6 +11,7 @@ public class Number {
             random.input(scanner);
             random.display();
             random.search(scanner);
+            random.show();
         }
         
     }
@@ -41,6 +42,12 @@ class Guess {
             }
             else{
                 System.out.println("it doesnt exits!!");
+            }
+        }
+
+        void show(){
+            for(int two:one){
+                System.out.println(two);
             }
         }
     }
